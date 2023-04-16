@@ -1,9 +1,11 @@
 mod gql;
+mod db;
 mod schema;
 use actix_web::{web, App, HttpServer, HttpResponse, web::Data};
 use async_graphql::{Schema, EmptyMutation, EmptySubscription, http::GraphiQLSource};
 use async_graphql_actix_web::{GraphQLRequest, GraphQLResponse};
 use schema::Query;
+use db::configure_db;
 
 
 
@@ -27,6 +29,7 @@ async fn main() -> std::io::Result<()> {
     let schema = Schema::build(Query, EmptyMutation, EmptySubscription)
         .finish();
 
+    let _ = configure_db().await;
     println!("Running server on http://127.0.0.1:8080");
 
     HttpServer::new(move || {

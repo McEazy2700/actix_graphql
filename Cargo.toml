@@ -5,9 +5,19 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[workspace]
+members = [".", "entity", "migration"]
+
+
 [dependencies]
+migration = { path = "migration" }
+entity = { path = "entity" }
 actix-web = "4"
 async-graphql = "4.0"
 async-graphql-actix-web = "4.0"
-sea-orm = { version = "^0", features = [ "sqlx-postgres", "runtime-actix-rustls", "macros", "debug-print", "with-time" ] }
+dotenvy_macro = "0.15.7"
+dotenv = "0.15.0"
 
+[dependencies.sea-orm]
+version = "^0"
+features = [ "sqlx-postgres", "runtime-actix-rustls" ]
