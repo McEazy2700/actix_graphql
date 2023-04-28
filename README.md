@@ -1,2 +1,2 @@
 # actix_graphql
-Rust graphql server form my personal website
+Rust graphql server for my personal website
